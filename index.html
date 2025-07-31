@@ -3,26 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natasha Eagles - Web Developer & Designer</title>
+    <title>Natasha Eagles - Creative Designer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         * {
             font-family: 'Inter', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         .nav-link {
@@ -35,11 +22,10 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background: #667eea;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
         }
         
         .nav-link:hover::after,
@@ -47,28 +33,102 @@
             width: 100%;
         }
         
-        .typing-animation {
-            border-right: 2px solid #667eea;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: #667eea; }
-            51%, 100% { border-color: transparent; }
-        }
-        
-        .skill-bar {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
             overflow: hidden;
         }
         
-        .skill-progress {
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(102, 126, 234, 0.2) 0%, transparent 50%);
+            animation: aurora 20s ease-in-out infinite;
+        }
+        
+        @keyframes aurora {
+            0%, 100% { opacity: 1; transform: rotate(0deg) scale(1); }
+            33% { opacity: 0.8; transform: rotate(1deg) scale(1.1); }
+            66% { opacity: 0.9; transform: rotate(-1deg) scale(0.9); }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 4px;
-            transition: width 2s ease-in-out;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .hero-text {
+            background: linear-gradient(135deg, #fff 0%, #f0f9ff 50%, #e0f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShine 3s ease-in-out infinite;
+        }
+        
+        @keyframes textShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .floating-element {
+            animation: floatUpDown 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .glow-button {
+            position: relative;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease infinite;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.7);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         .portfolio-filter {
@@ -100,384 +160,310 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
         }
+
+        .logo-container {
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .logo-accent::after {
+            content: '✦';
+            position: absolute;
+            right: -20px;
+            top: -5px;
+            font-size: 12px;
+            color: #667eea;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover .logo-accent::after {
+            opacity: 1;
+            transform: rotate(180deg);
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid rgba(255, 255, 255, 0.75);
+            white-space: nowrap;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: rgba(255, 255, 255, 0.75); }
+        }
+        
+
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            animation: decorationFloat 8s ease-in-out infinite;
+        }
+        
+        .hero-decoration:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .hero-decoration:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .hero-decoration:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes decorationFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+    <nav class="glass-effect fixed w-full top-0 z-50">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <div class="text-2xl font-bold text-gray-800">
-                    Natasha<span class="text-purple-600">Eagles</span>
+                <div class="logo-container group cursor-pointer">
+                    <div class="text-3xl font-black tracking-tight">
+                        <span class="logo-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
+                            Natasha
+                        </span>
+                        <span class="logo-accent text-white ml-1 relative font-bold">
+                            Eagles
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-500"></div>
+                        </span>
+                    </div>
+                    <div class="text-xs text-gray-300 font-medium tracking-widest uppercase mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Natasha Eagles
+                    </div>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link active text-gray-700 hover:text-purple-600 font-medium">Home</a>
-                    <a href="#portfolio" class="nav-link text-gray-700 hover:text-purple-600 font-medium">Portfolio</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-purple-600 font-medium">Contact</a>
+                    <a href="#home" class="nav-link active text-white hover:text-purple-300 font-medium">Home</a>
+                    <a href="#portfolio" class="nav-link text-white hover:text-purple-300 font-medium">Portfolio</a>
+                    <a href="#contact" class="nav-link text-white hover:text-purple-300 font-medium">Contact</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-purple-600">
+                    <button id="mobile-menu-btn" class="text-white hover:text-purple-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden pb-4">
-                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600">Home</a>
-                <a href="#portfolio" class="block py-2 text-gray-700 hover:text-purple-600">Portfolio</a>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-purple-600">Contact</a>
-            </div>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="min-h-screen gradient-bg flex items-center pt-16">
-        <div class="max-w-6xl mx-auto px-4 text-center text-white">
-            <div class="mb-8">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Ccircle cx='75' cy='75' r='75' fill='%23ffffff' opacity='0.1'/%3E%3Ccircle cx='75' cy='75' r='60' fill='%23ffffff' opacity='0.2'/%3E%3Ctext x='75' y='85' text-anchor='middle' font-family='Inter' font-size='48' font-weight='600' fill='%23ffffff'%3ENE%3C/text%3E%3C/svg%3E" alt="Natasha Eagles" class="w-32 h-32 mx-auto mb-6 rounded-full">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden glass-effect fixed w-full top-16 z-40 hidden">
+        <div class="px-4 py-4 space-y-4">
+            <a href="#home" class="block text-white hover:text-purple-300 font-medium">Home</a>
+            <a href="#portfolio" class="block text-white hover:text-purple-300 font-medium">Portfolio</a>
+            <a href="#contact" class="block text-white hover:text-purple-300 font-medium">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-16 relative">
+        <!-- Animated Background Decorations -->
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+
+            
+            <div class="fade-in-up stagger-1">
+                <div class="text-lg md:text-xl text-white mb-8 font-light tracking-wide opacity-90">
+                    Crafting exceptional digital experiences
+                </div>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                Hi, I'm <span class="typing-animation">Natasha Eagles</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90">
-                Web Developer & UI/UX Designer
-            </p>
-            <p class="text-lg mb-12 max-w-2xl mx-auto opacity-80">
-                I create beautiful, functional, and user-centered digital experiences that solve real-world problems through innovative design and clean code.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#portfolio" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
-                    View My Work
+            
+            <div class="fade-in-up stagger-2">
+                <h1 class="hero-text text-5xl md:text-7xl lg:text-8xl font-light mb-4 leading-tight tracking-wide">
+                    NATASHA
+                </h1>
+            </div>
+            
+            <div class="fade-in-up stagger-3">
+                <div class="typewriter text-4xl md:text-6xl font-thin mb-12 text-white inline-block tracking-widest">
+                    EAGLES
+                </div>
+            </div>
+            
+            <div class="fade-in-up stagger-4">
+                <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                    Transforming ideas into stunning visual experiences that captivate, inspire, and drive results through innovative design solutions
+                </p>
+            </div>
+            
+            <div class="fade-in-up stagger-4 space-x-6 mb-16">
+                <a href="#portfolio" class="glow-button inline-block text-white px-12 py-4 rounded-full font-medium text-lg hover:scale-105 transition-all duration-300 tracking-wide">
+                    View Portfolio
                 </a>
-                <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300">
+                <a href="#contact" class="glass-effect text-white px-12 py-4 rounded-full font-medium text-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 inline-block tracking-wide">
                     Get In Touch
                 </a>
             </div>
-        </div>
-    </section>
+            
 
-    <!-- About Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold text-gray-800 mb-6">About Me</h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        I'm a passionate web developer and designer with 3+ years of experience creating digital solutions that make a difference. I specialize in front-end development, UI/UX design, and bringing creative ideas to life through code.
-                    </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        When I'm not coding, you'll find me exploring new design trends, contributing to open-source projects, or mentoring aspiring developers in my community.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
-                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium">React</span>
-                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium">Node.js</span>
-                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium">UI/UX Design</span>
-                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium">Figma</span>
-                    </div>
-                </div>
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium text-gray-700">Frontend Development</span>
-                            <span class="text-purple-600 font-medium">95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium text-gray-700">UI/UX Design</span>
-                            <span class="text-purple-600 font-medium">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium text-gray-700">Backend Development</span>
-                            <span class="text-purple-600 font-medium">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium text-gray-700">Mobile Development</span>
-                            <span class="text-purple-600 font-medium">75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        
+
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-gray-50">
+    <section id="portfolio" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">My Portfolio</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Here's a selection of my recent work spanning web development, UI/UX design, and digital experiences.
-                </p>
+                <p class="text-gray-600 text-lg">A collection of my recent creative works</p>
             </div>
 
-            <!-- Portfolio Filters -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="portfolio-filter active px-6 py-2 rounded-full border border-purple-600 text-purple-600 font-medium" data-filter="all">
+            <!-- Filter Buttons -->
+            <div class="flex justify-center mb-12 flex-wrap gap-4">
+                <button class="portfolio-filter active px-6 py-2 rounded-full border-2 border-purple-600 text-purple-600 font-medium" data-filter="all">
                     All Projects
                 </button>
-                <button class="portfolio-filter px-6 py-2 rounded-full border border-gray-300 text-gray-600 font-medium" data-filter="web">
-                    Web Development
+                <button class="portfolio-filter px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-medium" data-filter="web">
+                    Web Design
                 </button>
-                <button class="portfolio-filter px-6 py-2 rounded-full border border-gray-300 text-gray-600 font-medium" data-filter="design">
-                    UI/UX Design
+                <button class="portfolio-filter px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-medium" data-filter="branding">
+                    Branding
                 </button>
-                <button class="portfolio-filter px-6 py-2 rounded-full border border-gray-300 text-gray-600 font-medium" data-filter="mobile">
-                    Mobile Apps
+                <button class="portfolio-filter px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-medium" data-filter="print">
+                    Print Design
                 </button>
             </div>
 
-            <!-- Portfolio Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="portfolio-item card-hover bg-white rounded-xl overflow-hidden shadow-lg" data-category="web">
-                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Pwint</h3>
-                        <p class="text-gray-600 mb-4">Made a website for Gallery-worthy prints that transform any space. Available in multiple sizes and finishes.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">React</span>
-                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">Node.js</span>
-                            <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded text-xs">MongoDB</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="#https://pwint.ca/" class="text-purple-600 hover:text-purple-700 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-700 font-medium">GitHub</a>
-                        </div>
-                    </div>
+                <!-- Project 1: Mineveil Forum -->
+                <div class="portfolio-item card-hover bg-white rounded-lg overflow-hidden shadow-md" data-category="web">
+                  <div class="h-64 bg-gray-200 flex items-center justify-center border-b">
+                    <img src="Screenshot 3.png" alt="Mineveil Forum" class="object-cover h-full w-full" />
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Mineveil Forum</h3>
+                    <p class="text-gray-600">A responsive community discussion board for Minecraft players with real-time updates and category filtering.</p>
+                  </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="portfolio-item card-hover bg-white rounded-xl overflow-hidden shadow-lg" data-category="design">
-                    <div class="h-48 bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Scramble Game</h3>
-                        <p class="text-gray-600 mb-4">Using React and local storage, create an interactive version of the game Scramble..</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">Figma</span>
-                            <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs">Sketch</span>
-                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">Prototyping</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">View Design</a>
-                            <a href="#https://github.com/eagl0037/mtm6404-scramble" class="text-gray-600 hover:text-gray-700 font-medium">Case Study</a>
-                        </div>
-                    </div>
+              
+                <!-- Project 2: Pwint Mosaics -->
+                <div class="portfolio-item card-hover bg-white rounded-lg overflow-hidden shadow-md" data-category="print">
+                  <div class="h-64 bg-gray-200 flex items-center justify-center border-b">
+                    <img src="Screenshot 2.png" alt="Pwint Mosaics" class="object-cover h-full w-full" />
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Pwint Mosaics</h3>
+                    <p class="text-gray-600">An elegant custom photo mosaic website that transforms thousands of images into one seamless artwork.</p>
+                  </div>
                 </div>
-
-                <!-- Project 3 -->
-                <div class="portfolio-item card-hover bg-white rounded-xl overflow-hidden shadow-lg" data-category="web">
-                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">NASA API site</h3>
-                        <p class="text-gray-600 mb-4">Search breathtaking NASA images or explore featured shots.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">Vue.js</span>
-                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">Express</span>
-                            <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs">Socket.io</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="#https://eagl0037.github.io/mtm6302-capstone-eagl0037/" class="text-purple-600 hover:text-purple-700 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-700 font-medium">GitHub</a>
-                        </div>
-                    </div>
+              
+                <!-- Project 3: Natasha Portfolio -->
+                <div class="portfolio-item card-hover bg-white rounded-lg overflow-hidden shadow-md" data-category="web">
+                  <div class="h-64 bg-gray-200 flex items-center justify-center border-b">
+                    <img src="Screenshot 4.png" alt="NASA API" class="object-cover h-full w-full" />
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">NASA API Site</h3>
+                    <p class="text-gray-600">A vibrant and interactive API Space photos by NASA built to save and look at your favourite space photos and showcase my design skills.</p>
+                  </div>
                 </div>
-
-                <!-- Project 4 -->
-                <div class="portfolio-item card-hover bg-white rounded-xl overflow-hidden shadow-lg" data-category="mobile">
-                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Collage Maker</h3>
-                        <p class="text-gray-600 mb-4">A site that Drag & drop images here, or click to upload to make your dream Collage</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">React Native</span>
-                            <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">Firebase</span>
-                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">Redux</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="#https://eagl0037.github.io/collage/" class="text-purple-600 hover:text-purple-700 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-700 font-medium">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="portfolio-item card-hover bg-white rounded-xl overflow-hidden shadow-lg" data-category="design">
-                    <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand Identity System</h3>
-                        <p class="text-gray-600 mb-4">Complete brand identity design for a tech startup including logo design, color palette, typography, and brand guidelines documentation.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs">Illustrator</span>
-                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">Photoshop</span>
-                            <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">InDesign</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">View Project</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-700 font-medium">Behance</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="portfolio-item card-hover bg-white rounded-xl overflow-hidden shadow-lg" data-category="web">
-                    <div class="h-48 bg-gradient-to-br from-teal-400 to-blue-500 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Social Learning Platform</h3>
-                        <p class="text-gray-600 mb-4">Educational platform connecting students and instructors with interactive courses, live sessions, and community features. Built with modern web technologies.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">Next.js</span>
-                            <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">PostgreSQL</span>
-                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">Tailwind</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-700 font-medium">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+              </div>
+              
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">Let's Work Together</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    I'm always interested in new opportunities and exciting projects. Let's discuss how we can bring your ideas to life.
-                </p>
+                <p class="text-gray-600 text-lg">Ready to bring your creative vision to life?</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <div class="flex items-start space-x-4">
-                        <div class="bg-purple-100 p-3 rounded-lg">
-                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                            </svg>
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <form class="contact-form space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Your Name">
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Email</h3>
-                            <a href="mailto:natasha.eagles@email.com" class="text-purple-600 hover:text-purple-700">natashaeagles@ymail.com</a>
+                            <label class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="your@email.com">
                         </div>
                     </div>
-
-                    <div class="flex items-start space-x-4">
-                        <div class="bg-purple-100 p-3 rounded-lg">
-                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Location</h3>
-                            <p class="text-gray-600">Ottawa, Ontario, Canada</p>
-                        </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Subject</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Project Subject">
                     </div>
-
-                    <div class="flex items-start space-x-4">
-                        <div class="bg-purple-100 p-3 rounded-lg">
-                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Phone</h3>
-                            <p class="text-gray-600">+1 613-864-8547</p>
-                        </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Message</label>
+                        <textarea rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Tell me about your project..."></textarea>
                     </div>
-
-                    <div class="pt-6">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Follow Me</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/natasha-eagles-a76916304/" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"/>
-                                </svg>
-                            </a>
-                            <a href="https://github.com/eagl0037" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition duration-300">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </a>
-                            <a href="" class="bg-pink-500 text-white p-3 rounded-lg hover:bg-pink-600 transition duration-300">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM10 1.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0110 1.475zM6.115 2.1c.226.31 1.756 2.422 3.176 4.926C6.892 8.206 4.547 8.175 4.21 8.168A8.549 8.549 0 016.115 2.1zM1.542 10.02c0-.065.003-.13.008-.193.328.006 2.987.043 6.263-1.176.308.6.595 1.213.862 1.834-2.969.836-5.578 3.201-5.578 3.201A8.497 8.497 0 011.542 10.02zm1.873 6.979s2.267-2.943 5.597-4.023c.835 2.169 1.178 3.993 1.271 4.493A8.535 8.535 0 013.415 16.999zm6.16.64c-.069-.42-.35-1.966-1.123-4.083 2.729-.434 5.124.275 5.405.346a8.482 8.482 0 01-4.282 3.737z" clip-rule="evenodd"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition duration-300 transform hover:scale-105">
+                    <div class="text-center">
+                        <button type="submit" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition duration-300">
                             Send Message
                         </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -485,57 +471,48 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-gray-400">
-                © 2025 Natasha Eagles. All rights reserved.
-            </p>
+            <div class="text-2xl font-bold mb-4">
+                Natasha<span class="text-purple-400">Eagles</span>
+            </div>
+            <p class="text-gray-400 mb-4">Digital Designer • Creative Visionary</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">LinkedIn</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Behance</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Instagram</a>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles
+        createParticles();
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                // Close mobile menu if open
-                mobileMenu.classList.add('hidden');
-            });
-        });
 
-        // Update active navigation link on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
 
         // Portfolio filtering
         const filterButtons = document.querySelectorAll('.portfolio-filter');
@@ -543,16 +520,22 @@
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const filter = button.getAttribute('data-filter');
-                
-                // Update active filter button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.add('border-gray-300', 'text-gray-600');
+                    btn.classList.remove('bg-purple-600', 'text-white', 'border-purple-600');
+                });
+
+                // Add active class to clicked button
                 button.classList.add('active');
-                
-                // Filter portfolio items
+                button.classList.remove('border-gray-300', 'text-gray-600');
+                button.classList.add('bg-purple-600', 'text-white', 'border-purple-600');
+
+                const filterValue = button.getAttribute('data-filter');
+
                 portfolioItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    if (filter === 'all' || category === filter) {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.classList.remove('hidden');
                     } else {
                         item.classList.add('hidden');
@@ -561,62 +544,28 @@
             });
         });
 
-        // Contact form handling
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', function(e) {
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            
-            // Create mailto link
-            const mailtoLink = `mailto:natasha.eagles@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you for your message! Your email client should open now.');
-            
-            // Reset form
-            this.reset();
+            alert('Thank you for your message! This is a demo form - in a real website, this would send your message.');
         });
 
-        // Typing animation
-        const typingText = document.querySelector('.typing-animation');
-        if (typingText) {
-            const text = 'Natasha Eagles';
-            let index = 0;
-            
-            function typeWriter() {
-                if (index < text.length) {
-                    typingText.textContent = text.slice(0, index + 1);
-                    index++;
-                    setTimeout(typeWriter, 150);
+        // Simple navigation link clicks
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed nav height
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
                 }
-            }
-            
-            // Start typing animation after page load
-            setTimeout(typeWriter, 1000);
-        }
-
-        // Animate skill bars on scroll
-        const skillBars = document.querySelectorAll('.skill-progress');
-        const animateSkills = () => {
-            skillBars.forEach(bar => {
-                const rect = bar.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    bar.style.width = bar.style.width || '0%';
-                }
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
             });
-        };
-
-        window.addEventListener('scroll', animateSkills);
-        window.addEventListener('load', animateSkills);
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'962c92fa16fe5e76',t:'MTc1MzEyMDU3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9679e7c3a3c7b734',t:'MTc1MzkzMTQ1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
